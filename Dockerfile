@@ -11,7 +11,7 @@ RUN apt-get update \
        liblzma-dev libmagickcore-dev libmagickwand-dev libmysqlclient-dev libncurses-dev libpng-dev \
        libpq-dev libreadline-dev libsqlite3-dev libssl-dev libtool libwebp-dev libxml2-dev libxslt-dev \
        libyaml-dev make patch xz-utils zlib1g-dev unzip curl \
-    && apt-get install -y git
+    && apt-get install -y git \
     && apt-get -qy install libcurl4-openssl-dev git-man liberror-perl \
     && mkdir -p /usr/src/git-openssl \
     && cd /usr/src/git-openssl \
@@ -59,13 +59,7 @@ ENV BUNDLE_PATH="$GEM_HOME" \
 
 ENV PATH $BUNDLE_BIN:$PATH
 
-RUN mkdir -p /usr/local/etc \
-  && { \
-        echo 'install: --no-document'; \
-        echo 'update: --no-document'; \
-    } >> /usr/local/etc/gemrc \
-    && apt-get update && apt-get install -y --no-install-recommends \
-       bison libgdbm-dev ruby \
+RUN apt-get update && apt-get install -y --no-install-recommends bison libgdbm-dev ruby \
     && wget "https://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.gz" -O /tmp/ruby.tar.gz \
     && echo "$RUBY_DOWNLOAD_SHA256 /tmp/ruby.tar.gz" | sha256sum -c - \
     && mkdir -p /usr/src/ruby \
