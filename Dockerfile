@@ -11,7 +11,7 @@ RUN apt-get update \
        liblzma-dev libmagickcore-dev libmagickwand-dev libmysqlclient-dev libncurses-dev libpng-dev \
        libpq-dev libreadline-dev libsqlite3-dev libssl-dev libtool libwebp-dev libxml2-dev libxslt-dev \
        libyaml-dev make patch xz-utils zlib1g-dev unzip curl \
-    && apt-get -qy build-dep git \
+    && apt-get install -y git
     && apt-get -qy install libcurl4-openssl-dev git-man liberror-perl \
     && mkdir -p /usr/src/git-openssl \
     && cd /usr/src/git-openssl \
